@@ -127,19 +127,19 @@ img {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 68px);
+  min-height: min(760px, calc(100vh - 68px));
   display: flex;
   align-items: center;
   overflow: hidden;
+  padding: 78px 0 72px;
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(248, 250, 247, 0.98) 0%, rgba(248, 250, 247, 0.86) 46%, rgba(248, 250, 247, 0.38) 100%),
-    url("../images/env.png") center / cover no-repeat;
-  transform: scale(1.02);
+    linear-gradient(90deg, rgba(248, 250, 247, 0.98) 0%, rgba(248, 250, 247, 0.88) 49%, rgba(248, 250, 247, 0.34) 100%),
+    url("../images/background.png") center / cover no-repeat;
 }
 
 .hero::after {
@@ -153,14 +153,12 @@ img {
 .hero-grid {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.72fr);
-  align-items: end;
-  gap: 42px;
+  display: block;
 }
 
 .hero-copy {
-  padding-top: 42px;
+  max-width: 1120px;
+  padding-top: 14px;
 }
 
 .eyebrow,
@@ -181,10 +179,10 @@ p {
 }
 
 h1 {
-  max-width: 980px;
+  max-width: 1120px;
   margin: 0;
-  font-size: clamp(2.55rem, 6vw, 5.55rem);
-  line-height: 0.98;
+  font-size: clamp(2.7rem, 5.2vw, 5.35rem);
+  line-height: 1;
   letter-spacing: 0;
 }
 
@@ -202,7 +200,7 @@ h3 {
 }
 
 .lead {
-  max-width: 760px;
+  max-width: 860px;
   margin: 24px 0 0;
   color: #324039;
   font-size: clamp(1.04rem, 1.7vw, 1.24rem);
@@ -248,7 +246,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  max-width: 760px;
+  max-width: 900px;
   overflow: hidden;
   border: 1px solid rgba(217, 224, 215, 0.9);
   border-radius: 8px;
@@ -279,7 +277,6 @@ h3 {
   font-size: 0.92rem;
 }
 
-.hero-card,
 .wide-figure,
 .image-panel {
   margin: 0;
@@ -288,11 +285,6 @@ h3 {
   background: #fff;
   overflow: hidden;
   box-shadow: var(--shadow);
-}
-
-.hero-card img {
-  aspect-ratio: 1.45;
-  object-fit: cover;
 }
 
 figcaption {
@@ -345,6 +337,7 @@ figcaption {
 
 .method-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
 }
 
 .method-card,
@@ -381,6 +374,14 @@ figcaption {
   aspect-ratio: 2.55;
   object-fit: contain;
   background: #fff;
+}
+
+.overview-figure {
+  margin-top: 0;
+}
+
+.overview-figure img {
+  aspect-ratio: 2.01;
 }
 
 .metric-grid {
@@ -541,10 +542,6 @@ figcaption {
   .two-col,
   .resource-layout {
     grid-template-columns: 1fr;
-  }
-
-  .hero-card {
-    display: none;
   }
 
   .method-grid,
