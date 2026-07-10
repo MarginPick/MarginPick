@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MarginPick: Margin-Aware Residual Reinforcement Learning for Fruit Picking in Deformable Canopies">
+  <meta property="og:title" content="MarginPick">
+  <meta property="og:description" content="Margin-aware residual reinforcement learning for safe fruit picking in deformable canopies.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/env.png">
+  <title>MarginPick | Margin-Aware Residual RL for Fruit Picking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="MarginPick home">
+        <span class="brand-mark">M</span>
+        <span>MarginPick</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#resources">Resources</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-pad">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">IEEE Robotics and Automation Letters submission</p>
+          <h1>Margin-Aware Residual Reinforcement Learning for Fruit Picking in Deformable Canopies</h1>
+          <p class="lead">
+            MarginPick learns safe pre-harvest reaching by combining a behavior-cloned nominal policy with residual reinforcement learning guided by normalized robot-contact and branch-deflection utilization.
+          </p>
+          <div class="button-row" aria-label="Project links">
+            <a class="button primary" href="assets/paper/marginpick-paper.pdf">Paper</a>
+            <a class="button" href="#method">Explore Method</a>
+            <a class="button ghost" href="#resources">Code</a>
+          </div>
+          <div class="status-strip" role="list" aria-label="Project highlights">
+            <div role="listitem"><strong>Task</strong><span>Contact-rich fruit reaching</span></div>
+            <div role="listitem"><strong>Robot</strong><span>Flexiv Rizon / Isaac Lab</span></div>
+            <div role="listitem"><strong>Signal</strong><span>Force + branch utilization</span></div>
+          </div>
+        </div>
+        <figure class="hero-card">
+          <img src="assets/images/env.png" alt="Procedural canopy generation and Isaac Lab fruit-picking scene">
+          <figcaption>Procedural tree synthesis and interactive fruit-picking environment.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-pad compact" id="abstract">
+      <div class="container two-col">
+        <div>
+          <p class="section-kicker">Abstract</p>
+          <h2>Learning to use branch compliance without exceeding safety margins.</h2>
+        </div>
+        <div class="prose-card">
+          <p>
+            Robotic fruit harvesting in dense, deformable canopies requires contact-rich motion through compliant vegetation. Treating every branch as an obstacle is overly conservative, while optimizing only reaching success can make policies push through vegetation with excessive contact force or branch deflection.
+          </p>
+          <p>
+            MarginPick converts contact force and branch deflection into normalized utilization signals, then uses them to guide a residual reinforcement learning policy on top of a behavior-cloned reaching prior. The goal is to keep mild branch interaction productive while discouraging unsafe robot-contact and plant-damage margins before critical limits are reached.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad muted" id="method">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="section-kicker">Method</p>
+          <h2>A compact margin interface for contact-rich canopy manipulation.</h2>
+          <p>MarginPick treats physical interaction as a finite budget rather than a binary collision label.</p>
+        </div>
+        <div class="method-grid">
+          <article class="method-card">
+            <span class="card-index">01</span>
+            <h3>Procedural deformable canopies</h3>
+            <p>L-system trees are converted to articulated branch assets with spring-actuated joints, randomized fruit placement, and obstacle-tree clutter.</p>
+          </article>
+          <article class="method-card">
+            <span class="card-index">02</span>
+            <h3>Normalized utilization</h3>
+            <p>Link contact forces and branch-joint deflections are mapped to continuous utilization variables, exposing how close each interaction is to its safety limit.</p>
+          </article>
+          <article class="method-card">
+            <span class="card-index">03</span>
+            <h3>Residual policy refinement</h3>
+            <p>A behavior-cloned IK prior supplies smooth nominal Cartesian motion, while PPO learns local residual corrections that react to contact and branch-risk signals.</p>
+          </article>
+        </div>
+        <figure class="wide-figure">
+          <img src="assets/images/RL.png" alt="Control and reward structure of MarginPick">
+          <figcaption>Frozen BC/IK prior plus margin-aware residual PPO for safe pre-harvest reaching.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-pad" id="results">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Evaluation</p>
+          <h2>Designed to report safe success, not just reaching success.</h2>
+          <p class="note">Final quantitative tables can be added here after the review-anonymized measurements are frozen.</p>
+        </div>
+        <div class="metric-grid" aria-label="Evaluation metrics">
+          <article class="metric-card">
+            <span>SR</span>
+            <strong>Success Rate</strong>
+            <p>Reaches the pre-harvest standoff pose with the required approach orientation.</p>
+          </article>
+          <article class="metric-card positive">
+            <span>SSR</span>
+            <strong>Safe Success Rate</strong>
+            <p>Satisfies success while keeping contact forces and branch deflections within prescribed limits.</p>
+          </article>
+          <article class="metric-card caution">
+            <span>COR</span>
+            <strong>Contact-Overload Rate</strong>
+            <p>Counts trials where at least one arm link reaches its contact-force utilization limit.</p>
+          </article>
+          <article class="metric-card caution">
+            <span>BOR</span>
+            <strong>Branch-Overload Rate</strong>
+            <p>Counts trials where any target-tree or obstacle-tree branch exceeds its utilization limit.</p>
+          </article>
+        </div>
+        <div class="figure-grid">
+          <figure class="image-panel">
+            <img src="assets/images/curve.png" alt="Draft training curves for benchmark policies">
+            <figcaption>Draft training curves for success and overload rates.</figcaption>
+          </figure>
+          <figure class="image-panel">
+            <img src="assets/images/rollout.png" alt="Representative rollout sequence in simulation and real-world validation">
+            <figcaption>Representative rollout sequences through branch clutter.</figcaption>
+          </figure>
+          <figure class="image-panel small-panel">
+            <img src="assets/images/experiment_env.png" alt="Real robot validation scene with a Flexiv Rizon arm and fruit proxies">
+            <figcaption>Real-robot validation scene with branch interference.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad muted" id="resources">
+      <div class="container resource-layout">
+        <div>
+          <p class="section-kicker">Resources</p>
+          <h2>Project artifacts</h2>
+          <p>Use this section for camera-ready resources, code, datasets, videos, and supplementary materials as they become available.</p>
+        </div>
+        <div class="resource-list">
+          <a class="resource-item" href="assets/paper/marginpick-paper.pdf">
+            <span>PDF</span>
+            <strong>Manuscript draft</strong>
+            <small>Local copy exported from paper/RAL/root.pdf</small>
+          </a>
+          <a class="resource-item disabled" href="#" aria-disabled="true">
+            <span>Code</span>
+            <strong>Training and evaluation code</strong>
+            <small>Coming soon</small>
+          </a>
+          <a class="resource-item disabled" href="#" aria-disabled="true">
+            <span>Video</span>
+            <strong>Supplementary video</strong>
+            <small>Coming soon</small>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="citation">
+      <div class="container two-col">
+        <div>
+          <p class="section-kicker">Citation</p>
+          <h2>BibTeX</h2>
+          <p class="note">Update author, venue, year, and links after publication or review policy permits disclosure.</p>
+        </div>
+        <pre class="bibtex"><code>@article{marginpick2026,
+  title   = {MarginPick: Margin-Aware Residual Reinforcement Learning
+             for Fruit Picking in Deformable Canopies},
+  author  = {Anonymous Authors},
+  journal = {IEEE Robotics and Automation Letters},
+  year    = {2026},
+  note    = {Manuscript under review}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>(c) 2026 MarginPick</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
