@@ -418,25 +418,26 @@ figcaption {
 }
 
 .figure-grid {
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .image-panel img {
   width: 100%;
-  aspect-ratio: 1.45;
+  height: 360px;
   object-fit: contain;
   background: #fff;
 }
 
-.small-panel {
+.rollout-panel {
   grid-column: span 2;
 }
 
-.small-panel img {
-  aspect-ratio: 2.45;
-  object-fit: cover;
+.rollout-panel img {
+  height: auto;
+  aspect-ratio: 1.235;
+  object-fit: contain;
 }
 
 .resource-list {
@@ -550,7 +551,7 @@ figcaption {
     grid-template-columns: 1fr;
   }
 
-  .small-panel {
+  .rollout-panel {
     grid-column: auto;
   }
 }
@@ -580,6 +581,14 @@ figcaption {
 
   .button {
     width: 100%;
+  }
+
+  .image-panel img {
+    height: 260px;
+  }
+
+  .rollout-panel img {
+    height: auto;
   }
 
   .resource-item {
